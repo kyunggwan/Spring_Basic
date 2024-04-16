@@ -8,7 +8,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class xmlAppContext {
 
     @Test
-    void xmlAppContext(){
+    void xmlAppContext() {
         GenericXmlApplicationContext ac = new GenericXmlApplicationContext("appConfig.xml");
         MemberService memberService = ac.getBean("memberService", MemberService.class);
 
