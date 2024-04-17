@@ -7,7 +7,9 @@ import hello.core.order.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import static org.assertj.core.api.Assertions.*;
+
 public class ConfigurationSingletonTest {
 
     @Test
@@ -28,5 +30,16 @@ public class ConfigurationSingletonTest {
 
         assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
+    }
+
+    @Test
+    void configurationDeep() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        // bean = class hello.core.AppConfig$$SpringCGLIB$$0
+        // 스프링 내부에서 호출되는 class는 AppConfig를 변환한 class
+        // 이미 등록된 Repository가 있으면 해당 Repository를 호출하여 Singleton을 구현한듯
+        System.out.println("bean = " + bean.getClass());
     }
 }
