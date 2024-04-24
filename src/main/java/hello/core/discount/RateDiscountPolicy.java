@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-//@Primary // 우선적으로 등록
-@MainDiscountPolicy // 커스텀 어노테이션
+@Primary // 우선적으로 등록
+//@MainDiscountPolicy // 커스텀 어노테이션
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10;
