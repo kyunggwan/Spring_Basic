@@ -20,7 +20,8 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig {
-        @Bean
+        // Bean 등록 초기화 initMethod, 소멸 detryoMethod
+        @Bean(initMethod = "init", destroyMethod = "close") // destroyMethod는 (inferred) 추론 메서드를 사용, 보통 close나 shutdown 같은 메소드가 있으면 자동으로 사용함
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
